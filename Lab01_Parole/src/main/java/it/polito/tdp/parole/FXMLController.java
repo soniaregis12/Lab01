@@ -13,8 +13,6 @@ import javafx.scene.control.TextField;
 public class FXMLController {
 	
 	Parole elenco ;
-	long l = System.nanoTime();
-	//pippo
 	
     @FXML
     private ResourceBundle resources;
@@ -44,9 +42,16 @@ public class FXMLController {
     void doInsert(ActionEvent event) {
   
     	String pippo = "";
+    	double start = 0.0;
+    	double stop = 0.0;
+    	
     	String parolaInserita = txtParola.getText();
+    	
     	if(!parolaInserita.contains(" ")) {
+    		
+    		start = System.nanoTime();
     		elenco.addParola(parolaInserita);
+    		stop = System.nanoTime();
     		
     		for(String s : elenco.getElenco()) {
     			if(pippo == "") {
@@ -57,14 +62,16 @@ public class FXMLController {
     		}
         	txtResult.setText(pippo);	
     	}
-        txtTempi.appendText("\n" + l);
+        txtTempi.appendText("\n" + (stop-start)/1e9);
     }
 
     @FXML
     void doReset(ActionEvent event) {
+    	double  start = System.nanoTime();
     	elenco.reset();
+    	double  stop = System.nanoTime();
     	txtResult.clear();
-        txtTempi.appendText("\n" + l);
+        txtTempi.appendText("\n" + (stop-start)/1e9);
     }
     
     @FXML
@@ -72,7 +79,9 @@ public class FXMLController {
     	
     	String pippo = "";
     	String parolaCancellata = txtResult.getSelectedText();
+    	double  start = System.nanoTime();
     	elenco.getElenco().remove(parolaCancellata);
+    	double  stop = System.nanoTime();
     	for(String s : elenco.getElenco()) {
 			if(pippo == "") {
 				pippo = s;
@@ -81,7 +90,7 @@ public class FXMLController {
 			}
 		}
     	txtResult.setText(pippo);
-        txtTempi.appendText("\n" + l);
+        txtTempi.appendText("\n" + (stop-start)/1e9);
     }
 
     @FXML
