@@ -14,7 +14,7 @@ public class FXMLController {
 	
 	Parole elenco ;
 	long l = System.nanoTime();
-	String pippo;
+	//pippo
 	
     @FXML
     private ResourceBundle resources;
