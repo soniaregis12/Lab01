@@ -14,6 +14,7 @@ public class FXMLController {
 	
 	Parole elenco ;
 	long l = System.nanoTime();
+	// progetto finito
 	
     @FXML
     private ResourceBundle resources;
